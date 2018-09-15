@@ -2,10 +2,7 @@
 
 namespace App\Respoitories;
 
-
-use GuzzleHttp\Client;
-
-class MapsRepository
+class StreetNameRepository
 {
     protected $baseUrl;
 

@@ -17,10 +17,8 @@ class CreateTripsTable extends Migration
             $table->increments('id');
             $table->integer('score')->default(0);
 
-            $table->float('origin_latitude');
-            $table->float('origin_longitude');
-            $table->float('destination_latitude');
-            $table->float('destination_longitude');
+            $table->string('source');
+            $table->string('destination');
 
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

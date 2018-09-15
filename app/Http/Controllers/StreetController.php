@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Respoitories\MapsRepository;
+use App\Respoitories\StreetNameRepository;
 use Illuminate\Http\Request;
 
 class StreetController extends Controller
@@ -13,7 +13,7 @@ class StreetController extends Controller
         $longitude = $request->input('longitude');
 
         return [
-            'streetname' => MapsRepository::streetName($latitude, $longitude)
+            'streetname' => StreetNameRepository::streetName($latitude, $longitude)
         ];
     }
 }
