@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Respoitories\PathRepository;
+use App\Respoitories\WebRequest;
 use App\Segment;
 use App\Trip;
 use App\User;
@@ -21,14 +23,27 @@ class TripController extends Controller
 
     public function create(User $user, Request $request)
     {
-        $trip = Trip::make($request->input());
+        $trip1 = Trip::make($request->input());
+        $trip2 = Trip::make($request->input());
 
-        $user->trips()->save($trip);
+        $user->trips()->saveMany([$trip1, $trip2]);
 
-        $segments = factory(Segment::class, 10)->make();
+        $segments1 = PathRepository::parse(
+            $request->input('source'),
+            $request->input('destination')
+        );
 
-        $trip->segments()->saveMany($segments);
+        $segments2 = PathRepository::parse(
+            $request->input('source'),
+            $request->input('destination')
+        );
 
-        return $trip->load('segments');
+        $trip1->segments()->saveMany($segments1);
+        $trip2->segments()->saveMany($segments2);
+
+        return [
+            $trip1->load('segments'),
+            $trip2->load('segments')
+        ];
     }
 }

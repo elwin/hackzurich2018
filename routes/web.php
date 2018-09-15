@@ -19,4 +19,6 @@ Route::get('/trip/{user}', 'TripController@index');
 Route::post('/trip/{user}', 'TripController@create');
 Route::get('/segment/{trip}', 'TripController@show');
 
-Route::get('streetname', 'StreetController@place');
+Route::middleware(['cached'])->group(function () {
+    Route::get('streetname', 'StreetController@place');
+});

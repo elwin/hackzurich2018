@@ -10,6 +10,7 @@ class Segment extends Model
     protected $casts = [
         'polyline' => 'json'
     ];
+    protected $guarded = [];
 
     public function trip()
     {

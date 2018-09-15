@@ -12,8 +12,6 @@ class StreetController extends Controller
         $latitude = $request->input('latitude');
         $longitude = $request->input('longitude');
 
-        return [
-            'streetname' => StreetNameRepository::streetName($latitude, $longitude)
-        ];
+        return StreetNameRepository::streetName($latitude, $longitude);
     }
 }

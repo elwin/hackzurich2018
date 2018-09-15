@@ -11,29 +11,52 @@ class WebRequest
     protected $baseUrl;
     protected $options;
 
-    public static function getJson($baseUrl, $options)
+    public static function getJson($baseUrl, $options = [])
     {
         $s = new self($baseUrl, $options);
-        return $s->json();
+        return $s->get();
+    }
+
+    public static function postJson($baseUrl, $options = [])
+    {
+        $s = new self($baseUrl, $options);
+        return $s->post();
     }
 
     public function __construct($baseUrl, $options)
     {
         $this->baseUrl = $baseUrl;
         $this->options = $options;
+    }
 
-        $this->options['key'] = config('maps.key');
+    public function post()
+    {
+        $client = new Client();
+        $data = $client->request(
+            'POST',
+            $this->baseUrl,
+            ['form_params' => $this->options]
+        );
+
+        return $this->json($data);
+    }
+
+    public function get()
+    {
+        $client = new Client();
+        $data = $client->get($this->generateUrl());
+
+        return $this->json($data);
     }
 
 
-    public function json()
+    public function json($data)
     {
-        $url = $this->baseUrl . '?' . http_build_query($this->options);
+        return json_decode($data->getBody()->getContents());
+    }
 
-        $client = new Client();
-        $data = $client->get($url);
-        $parsed = json_decode($data->getBody()->getContents());
-
-        return $parsed;
+    public function generateUrl()
+    {
+        return $this->baseUrl . '?' . http_build_query($this->options);
     }
 }

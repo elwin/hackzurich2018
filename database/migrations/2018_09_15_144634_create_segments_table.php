@@ -19,11 +19,6 @@ class CreateSegmentsTable extends Migration
             $table->integer('score');
             $table->text('polyline');
 
-            $table->float('origin_latitude');
-            $table->float('origin_longitude');
-            $table->float('destination_latitude');
-            $table->float('destination_longitude');
-
             $table->unsignedInteger('trip_id');
             $table->foreign('trip_id')->references('id')->on('trips');
 
