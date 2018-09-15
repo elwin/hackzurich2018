@@ -2,6 +2,6 @@
 
 return [
 
-    'url' => 'http://b8a0e0d2.ngrok.io/api/',
+    'url' => 'http://d2ab0b8a.ngrok.io/',
 
 ];
