@@ -11,5 +11,13 @@
 |
 */
 
-Route::get('/', 'UserController@index');
-Route::get('/trips/{user}', 'TripController@index');
+Route::get('/', function() {
+    App\Trip::all()->each(function ($trip) {
+        App\Respoitories\ScoreRepository::completeTrip($trip);
+    });
+
+    return App\User::all();
+});
+//Route::get('/', 'UserController@index');
+Route::get('/user', 'UserController@index');
+Route::get('/user/{user}', 'TripController@index');
