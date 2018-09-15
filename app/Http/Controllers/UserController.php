@@ -12,4 +12,11 @@ class UserController extends Controller
     {
         return User::all();
     }
+
+    public function create(Request $request)
+    {
+        $user = User::create($request->input());
+
+        return $user;
+    }
 }

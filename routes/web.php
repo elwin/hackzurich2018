@@ -14,7 +14,9 @@
 //Route::get('/', 'UserController@test');
 Route::get('/', 'UserController@index');
 Route::get('/user', 'UserController@index');
-Route::get('/user/{user}', 'TripController@index');
+Route::post('/user', 'UserController@create');
+Route::get('/trip/{user}', 'TripController@index');
 Route::post('/trip/{user}', 'TripController@create');
+Route::get('/segment/{trip}', 'TripController@show');
 
 Route::get('streetname', 'StreetController@place');

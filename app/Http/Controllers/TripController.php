@@ -14,6 +14,11 @@ class TripController extends Controller
         return $user->trips;
     }
 
+    public function show(Trip $trip)
+    {
+        return $trip->load('segments');
+    }
+
     public function create(User $user, Request $request)
     {
         $trip = Trip::make($request->input());
