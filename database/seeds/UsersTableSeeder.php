@@ -11,15 +11,15 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 20)->create()->each(function ($u) {
-            $trips = factory(App\Trip::class, 20)->make();
-            $u->trips()->saveMany($trips);
+        factory(App\User::class, 5)->create()->each(function ($u) {
+            $trips = factory(App\Trip::class, 10)->make();
+//            $u->trips()->saveMany($trips);
 
-            $trips->each(function ($t) {
-                $points = factory(App\Point::class, 20)->make();
-
-                $t->points()->saveMany($points);
-            });
+//            $trips->each(function ($t) {
+//                $points = factory(App\Point::class, 50)->make();
+//
+//                $t->points()->saveMany($points);
+//            });
         });
     }
 }

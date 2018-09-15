@@ -11,13 +11,10 @@
 |
 */
 
-Route::get('/', function() {
-    App\Trip::all()->each(function ($trip) {
-        App\Respoitories\ScoreRepository::completeTrip($trip);
-    });
-
-    return App\User::all();
-});
-//Route::get('/', 'UserController@index');
+//Route::get('/', 'UserController@test');
+Route::get('/', 'UserController@index');
 Route::get('/user', 'UserController@index');
 Route::get('/user/{user}', 'TripController@index');
+Route::post('/trip/{user}', 'TripController@create');
+
+Route::get('streetname', 'StreetController@place');

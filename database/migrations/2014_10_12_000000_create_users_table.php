@@ -15,7 +15,6 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('uuid');
             $table->string('name');
             $table->integer('score')->default(0);
             $table->timestamps();
