@@ -49,20 +49,22 @@ class StreetNameRepository
 
         $components = collect($json->result->address_components);
 
-        $streetComponent = $components->filter(function ($component) {
-            return collect($component->types)->contains('route');
-        });
+        return $components;
 
-        $cityComponent = $components->filter(function ($component) {
-            return
-                collect($component->types)->contains('locality')
-                || collect($component->types)->contains('postal_town');
-        });
-
-        return [
-            'streetname' => $streetComponent->first()->long_name,
-            'city'       => $cityComponent->first()->long_name
-        ];
+//        $streetComponent = $components->filter(function ($component) {
+//            return collect($component->types)->contains('route');
+//        });
+//
+//        $cityComponent = $components->filter(function ($component) {
+//            return
+//                collect($component->types)->contains('locality')
+//                || collect($component->types)->contains('postal_town');
+//        });
+//
+//        return [
+//            'streetname' => $streetComponent->first()->long_name,
+//            'city'       => $cityComponent->first()->long_name
+//        ];
     }
 
     public static function streetName(float $latitude, float $longitude)
