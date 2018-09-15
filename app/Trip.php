@@ -10,4 +10,9 @@ class Trip extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function points()
+    {
+        return $this->hasMany(Point::class);
+    }
 }

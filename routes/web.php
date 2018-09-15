@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'UserController@index');
-Route::get('/{user}/trips', 'TripController@index');
+Route::get('/trips/{user}', 'TripController@index');
