@@ -12,7 +12,7 @@
 */
 
 //Route::get('/', 'UserController@test');
-Route::get('/', 'UserController@index');
+Route::get('/', 'StreetController@index');
 Route::get('/user', 'UserController@index');
 Route::post('/user', 'UserController@create');
 Route::get('/user/{user}', 'UserController@show');

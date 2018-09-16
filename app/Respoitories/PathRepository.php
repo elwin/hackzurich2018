@@ -58,11 +58,14 @@ class PathRepository
 
         foreach ($segments as $segment) {
 
-            $street = Street::create(['name' => $segment->street_name]);
+            $street = Street::firstOrCreate(
+                ['name' => $segment->street_name],
+                ['score' => $faker->numberBetween(-2, 10)]
+            );
 
             $parsedSegments[] = Segment::make([
                 'streetname' => $segment->street_name,
-                'score' => $faker->numberBetween(-2, 10),
+                'score' => $street->score,
                 'polyline' => $segment->polyline,
                 'street_id' => $street->id
             ]);

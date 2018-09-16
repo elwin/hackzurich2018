@@ -31,9 +31,4 @@ class Trip extends Model
     {
         return $this->belongsTo(Bundle::class);
     }
-
-    public function street()
-    {
-        return $this->belongsTo(Street::class);
-    }
 }
