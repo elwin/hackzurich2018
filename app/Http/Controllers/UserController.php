@@ -21,6 +21,7 @@ class UserController extends Controller
     public function create(Request $request)
     {
         $user = User::create($request->input());
+        $user->score = 53;
 
         return $user;
     }

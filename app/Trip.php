@@ -8,6 +8,9 @@ class Trip extends Model
 {
 
     protected $guarded = [];
+    protected $casts = [
+        'preferred' => 'boolean'
+    ];
 
     public function user()
     {
@@ -22,5 +25,15 @@ class Trip extends Model
     public function segments()
     {
         return $this->hasMany(Segment::class);
+    }
+
+    public function bundle()
+    {
+        return $this->belongsTo(Bundle::class);
+    }
+
+    public function street()
+    {
+        return $this->belongsTo(Street::class);
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTripsTable extends Migration
+class CreateBundlesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,10 @@ class CreateTripsTable extends Migration
      */
     public function up()
     {
-        Schema::create('trips', function (Blueprint $table) {
+        Schema::create('bundles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('score')->default(0);
-            $table->boolean('preferred');
-
             $table->string('source');
             $table->string('destination');
-
-            $table->unsignedInteger('bundle_id');
-            $table->foreign('bundle_id')->references('id')->on('bundles');
 
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
@@ -38,6 +32,6 @@ class CreateTripsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trips');
+        Schema::dropIfExists('bundles');
     }
 }

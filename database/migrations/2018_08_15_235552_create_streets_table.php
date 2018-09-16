@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSegmentsTable extends Migration
+class CreateStreetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,10 @@ class CreateSegmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('segments', function (Blueprint $table) {
+        Schema::create('streets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('streetname');
+            $table->string('name');
             $table->integer('score');
-            $table->text('polyline');
-
-            $table->unsignedInteger('street_id');
-            $table->foreign('street_id')->references('id')->on('streets');
-
-            $table->unsignedInteger('trip_id');
-            $table->foreign('trip_id')->references('id')->on('trips');
-
             $table->timestamps();
         });
     }
@@ -36,6 +28,6 @@ class CreateSegmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('segments');
+        Schema::dropIfExists('streets');
     }
 }

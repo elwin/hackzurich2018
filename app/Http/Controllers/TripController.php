@@ -23,27 +23,14 @@ class TripController extends Controller
 
     public function create(User $user, Request $request)
     {
-        $trip1 = Trip::make($request->input());
-        $trip2 = Trip::make($request->input());
+        $source = $request->input('source');
+        $destination = $request->input('destination');
+        $via = $request->input('via');
 
-        $user->trips()->saveMany([$trip1, $trip2]);
+        $trips = PathRepository::parseCollection($source, $destination, $user);
 
-        $segments1 = PathRepository::parse(
-            $request->input('source'),
-            $request->input('destination')
-        );
-
-        $segments2 = PathRepository::parse(
-            $request->input('source'),
-            $request->input('destination')
-        );
-
-        $trip1->segments()->saveMany($segments1);
-        $trip2->segments()->saveMany($segments2);
-
-        return [
-            $trip1->load('segments'),
-            $trip2->load('segments')
-        ];
+        return collect($trips)->each(function ($trip) {
+            $trip->load('segments');
+        });
     }
 }

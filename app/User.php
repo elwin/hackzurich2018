@@ -18,4 +18,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Trip::class);
     }
+
+    public function bundles()
+    {
+        return $this->hasMany(Bundle::class);
+    }
+
 }

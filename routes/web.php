@@ -17,6 +17,7 @@ Route::get('/user', 'UserController@index');
 Route::post('/user', 'UserController@create');
 Route::get('/user/{user}', 'UserController@show');
 Route::get('/trip/{user}', 'TripController@index');
+Route::get('/bundle/{user}', 'BundleController@index');
 Route::post('/trip/{user}', 'TripController@create');
 Route::get('/segment/{trip}', 'TripController@show');
 
